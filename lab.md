@@ -36,6 +36,12 @@
    kubectl create namespace fullstackenabler
    ```
 
+Confirm the creation of the namespace with the following command
+
+   ```sh
+   kubectl get namespace
+   ```
+
 6. Deploy FSE environment to the cluster.
 
    ```sh
