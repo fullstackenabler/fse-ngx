@@ -30,7 +30,13 @@
 
    Creating the cluster may take a few minutes.
 
-5. Deploy Online Boutique to the cluster.
+5. Create new namespace
+
+   ```sh
+   kubectl create namespace fullstackenabler
+   ```
+
+6. Deploy FSE environment to the cluster.
 
    ```sh
    kubectl apply -f ./fse-ngx/fse-ngnix.yaml
