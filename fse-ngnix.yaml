@@ -21,7 +21,7 @@ subjects:
     name: nginx-sa
     namespace: fullstackenabler
 roleRef:
-  kind: ClusterRoleRole
+  kind: ClusterRole
   name: nginx-role
   apiGroup: rbac.authorization.k8s.io
 
