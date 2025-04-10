@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: fullstackenabler
 
-
+---
 # RBAC Role Configuration
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
