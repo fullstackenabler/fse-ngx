@@ -8,7 +8,6 @@ metadata:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-#  namespace: fullstackenabler
   name: fse-ngx-role
 rules:
   - apiGroups: [""]
@@ -27,7 +26,6 @@ metadata:
 subjects:
   - kind: Group
     name: fse-user-aliases
-#    namespace: fullstackenabler
   - kind: ServiceAccount
     name: nginx-sa
     namespace: fullstackenabler
