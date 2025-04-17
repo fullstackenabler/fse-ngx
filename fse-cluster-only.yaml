@@ -41,9 +41,9 @@ subjects:
   - kind: Group
     name: fse-user-aliases
     apiGroup: rbac.authorization.k8s.io
-  - kind: ServiceAccount
-    name: nginx-sa
-    namespace: fullstackenabler
+#  - kind: ServiceAccount
+#    name: nginx-sa
+#    namespace: fullstackenabler
 roleRef:
   kind: ClusterRole
   name: fse-ngx-role
