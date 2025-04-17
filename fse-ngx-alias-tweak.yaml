@@ -67,7 +67,7 @@ spec:
       labels:
         app: nginx
     spec:
-      serviceAccountName: nginx-sa
+      serviceAccountName: fse-ngx-role
       containers:
         - name: nginx
           image: nginx:latest
@@ -76,8 +76,8 @@ spec:
 
 ---
 # Service Account Configuration
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: nginx-sa
-  namespace: fullstackenabler
+# apiVersion: v1
+# kind: ServiceAccount
+# metadata:
+#  name: nginx-sa
+#  namespace: fullstackenabler
