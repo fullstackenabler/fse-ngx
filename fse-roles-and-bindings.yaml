@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sdm-health
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+
+  ---
+
+  apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-health-binding
+subjects:
+- kind: User
+  name: sdm-health # Use as the Identity Alias Healthcheck Username
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: sdm-health
+  apiGroup: rbac.authorization.k8s.io
+
+  ---
+
+  apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sdm-user-impersonator
+rules:
+- apiGroups: [""]
+  resources: ["users"]
+  verbs: ["impersonate"]
+
+  ---
+
+  apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-user-impersonator-binding
+subjects:
+# Set one of the following, either User or ServiceAccount
+- kind: User
+  name: <STRONGDM_ADMIN_USER>
+  apiGroup: rbac.authorization.k8s.io
+- kind: ServiceAccount
+  name: <STRONGDM_ADMIN_SERVICEACCOUNT>
+  namespace: <STRONGDM_ADMIN_SERVICEACCOUNT_NAMESPACE>
+roleRef:
+  kind: ClusterRole
+  name: sdm-user-impersonator
+  apiGroup: rbac.authorization.k8s.io
