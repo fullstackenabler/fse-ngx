@@ -20,7 +20,7 @@ subjects:
   name: sdm-health # Use as the Identity Alias Healthcheck Username
   apiGroup: rbac.authorization.k8s.io
 roleRef:
-  kind: Role
+  kind: ClusterRole
   name: sdm-health
   apiGroup: rbac.authorization.k8s.io
 
