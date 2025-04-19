@@ -46,9 +46,9 @@ subjects:
 - kind: User
   name: fse-sa
   apiGroup: rbac.authorization.k8s.io
-- kind: ServiceAccount
-  name: <STRONGDM_ADMIN_SERVICEACCOUNT>
-  namespace: default
+# - kind: ServiceAccount
+#  name: <STRONGDM_ADMIN_SERVICEACCOUNT>
+#  namespace: default
 roleRef:
   kind: ClusterRole
   name: sdm-user-impersonator
