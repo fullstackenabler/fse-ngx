@@ -11,19 +11,6 @@ rules:
 
 ---
 
-# Create fse-sa role to permit access to k8s cluster
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: fse-sa
-rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "watch", "list"]
-
----
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -56,8 +43,8 @@ metadata:
   name: sdm-user-impersonator-binding
 subjects:
 # Set one of the following, either User or ServiceAccount
-- kind: ClusterRole
-  name: fse-sa
+- kind: ServiceAccount
+  name: fse-engineering@calvin-k8s.iam.gserviceaccount.com
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
