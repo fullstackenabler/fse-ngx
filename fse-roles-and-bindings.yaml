@@ -44,7 +44,7 @@ metadata:
 subjects:
 # Set one of the following, either User or ServiceAccount
 - kind: User
-  name: calvin.mangubat@strongdm.com
+  name: calvin.mangubat@fullstackenabler.com
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
