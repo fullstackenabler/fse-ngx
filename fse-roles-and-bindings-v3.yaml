@@ -37,23 +37,16 @@ rules:
 
 ---
 
-# Role and Group
+# User that identity alias impersonates
 
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
+kind: ClusterRole
 metadata:
-  name: read-pods
-subjects:
-- kind: User
   name: fse-sa
-  apiGroup: rbac.authorization.k8s.io
-- kind: Group
-  name: developers
-  apiGroup: rbac.authorization.k8s.io
-roleRef:
-  kind: Role
-  name: remote_reader
-  apiGroup: rbac.authorization.k8s.io
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
 
 ---
 
