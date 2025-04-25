@@ -1,0 +1,129 @@
+# This section creates the roles and role bindings required for identity alias functionality
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sdm-health
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-health-binding
+subjects:
+- kind: User
+  name: sdm-health # Use as the Identity Alias Healthcheck Username
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: sdm-health
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sdm-user-impersonator
+rules:
+- apiGroups: [""]
+  resources: ["users","groups", "serviceaccounts"]
+  verbs: ["impersonate"]
+
+---
+
+# Privilege escalation role
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: fse-users-aliases
+rules:
+  - apiGroups: [""]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["apps"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["batch"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["extensions"]
+    resources: ["*"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: [""]
+    resources: ["users", "groups", "serviceaccounts"]
+    verbs: ["impersonate"]
+  - apiGroups: ["authentication.k8s.io"]
+    resources: ["userextras/scopes"]
+    verbs: ["impersonate"]
+
+---
+
+# Privilege escalation role binding
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: fse-users-aliases-bindings
+subjects:
+  - kind: Group
+    name: fse-users
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: fse-users-aliases
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-user-impersonator-binding
+subjects:
+# Set one of the following, either User or ServiceAccount
+- kind: User
+  name: fse-impersonate
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: sdm-user-impersonator
+  apiGroup: rbac.authorization.k8s.io
+
+
+---
+
+  # This creates the roles and role bindings for Discovery functionality
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sdm-discover
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces", "serviceaccounts"]
+    verbs: ["list", "get", "watch"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+    verbs: ["list", "get", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-discovery-binding
+subjects:
+- kind: User
+  name: discovery
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: sdm-discover
+  apiGroup: rbac.authorization.k8s.io
