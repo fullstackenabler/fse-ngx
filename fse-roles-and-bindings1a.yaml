@@ -19,6 +19,8 @@ subjects:
 - kind: User
   name: sdm-health # Use as the Identity Alias Healthcheck Username
   apiGroup: rbac.authorization.k8s.io
+- kind: ServiceAccount
+  name: calvin.mangubat@strongdm.com
 roleRef:
   kind: ClusterRole
   name: sdm-health
