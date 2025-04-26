@@ -92,7 +92,7 @@ subjects:
   name: fse-impersonate
   apiGroup: rbac.authorization.k8s.io
 - kind: ServiceAccount
-  name: calvin.mangubat@strongdm.com
+  name: calvin.mangubat
   namespace: default
 roleRef:
   kind: ClusterRole
