@@ -89,11 +89,8 @@ metadata:
 subjects:
 # Set one of the following, either User or ServiceAccount
 - kind: User
-  name: fse-impersonate
+  name: calvin.mangubat@strongdm.com
   apiGroup: rbac.authorization.k8s.io
-- kind: ServiceAccount
-  name: calvin.mangubat
-  namespace: default
 roleRef:
   kind: ClusterRole
   name: sdm-user-impersonator
