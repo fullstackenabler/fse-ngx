@@ -37,6 +37,19 @@ rules:
 
 ---
 
+# Test
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: calvin.mangubat@strongdm.com
+rules:
+- apiGroups: [""]
+  resources: ["users","groups", "serviceaccounts"]
+  verbs: ["impersonate"]
+
+---
+
 # Privilege escalation role
 
 apiVersion: rbac.authorization.k8s.io/v1
@@ -88,7 +101,7 @@ metadata:
   name: sdm-user-impersonator-binding
 subjects:
 # Set one of the following, either User or ServiceAccount
-- kind: User
+- kind: ClusterRole
   name: calvin.mangubat@strongdm.com
   apiGroup: rbac.authorization.k8s.io
 roleRef:
