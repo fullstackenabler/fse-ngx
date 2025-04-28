@@ -101,12 +101,12 @@ metadata:
   name: sdm-user-impersonator-binding
 subjects:
 # Set one of the following, either User or ServiceAccount
-- kind: ClusterRole
-  name: calvin.mangubat@strongdm.com
-  apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: sdm-user-impersonator
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: calvin.mangubat@strongdm.com
   apiGroup: rbac.authorization.k8s.io
 
 
