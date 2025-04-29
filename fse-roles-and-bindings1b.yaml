@@ -37,19 +37,6 @@ rules:
 
 ---
 
-# Test
-
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: calvin.mangubat@strongdm.com
-rules:
-- apiGroups: [""]
-  resources: ["users","groups", "serviceaccounts"]
-  verbs: ["impersonate"]
-
----
-
 # Privilege escalation role
 
 apiVersion: rbac.authorization.k8s.io/v1
@@ -85,9 +72,10 @@ kind: ClusterRoleBinding
 metadata:
   name: fse-users-aliases-bindings
 subjects:
-  - kind: Group
+  - kind: User
     name: fse-users
-    apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: calvin.mangubat@strongdm.com
 roleRef:
   kind: ClusterRole
   name: fse-users-aliases
@@ -105,10 +93,6 @@ roleRef:
   kind: ClusterRole
   name: sdm-user-impersonator
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: calvin.mangubat@strongdm.com
-  apiGroup: rbac.authorization.k8s.io
-
 
 ---
 
