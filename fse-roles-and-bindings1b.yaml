@@ -32,7 +32,7 @@ metadata:
   name: sdm-user-impersonator
 rules:
 - apiGroups: [""]
-  resources: ["users","groups", "serviceaccounts"]
+  resources: ["*"]
   verbs: ["impersonate"]
 
 ---
