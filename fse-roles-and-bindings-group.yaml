@@ -57,10 +57,10 @@ kind: ClusterRoleBinding
 metadata:
   name: fse-users-aliases-bindings
 subjects:
-  - kind: User
-    name: fse-users
-  - kind: User
-    name: calvin.mangubat@strongdm.com
+#  - kind: User
+#    name: fse-users
+#  - kind: User
+#    name: calvin.mangubat@strongdm.com
   - kind: Group
     name: engineering@fullstackenabler.com
 roleRef:
