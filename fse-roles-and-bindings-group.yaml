@@ -61,7 +61,7 @@ subjects:
     name: fse-users
   - kind: User
     name: calvin.mangubat@strongdm.com
-  - kind: group
+  - kind: Group
     name: engineering@fullstackenabler.com
 roleRef:
   kind: ClusterRole
