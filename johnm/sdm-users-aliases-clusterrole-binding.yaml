@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: sdm-users-aliases-bindings
+subjects:
+  - kind: Group
+    name: sdm-users
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: sdm-users-aliases
+  apiGroup: rbac.authorization.k8s.io
