@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: nginx:latest
+        image: <your-ecr-registry>/nginx-repo:latest  # Use your ECR image URI
         ports:
         - containerPort: 80
